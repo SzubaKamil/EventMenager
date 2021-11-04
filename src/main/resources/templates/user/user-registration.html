@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head th:replace="fragments/general.html :: headfragment">
+
+</head>
+
+<body>
+
+<div th:replace="fragments/general.html :: pageHead"/>
+
+<form action="rejestracja/save" modelAttribute="user">
+    <br><br>
+    <input class="width-250 btn btn-secondary" type="text" placeholder="Nazwa uzytkownika" th:field="*{user.username}">
+
+    <br><br>
+    <input class="width-250 btn btn-secondary" type="password" placeholder="Wprowadź hasło" th:field="*{user.password}">
+
+    <br><br>
+    <input class="width-250 btn btn-secondary" type="password" placeholder="Powtórz Hasło" th:field="*{user.passwordRepeat}">
+
+    <br><br>
+
+    <select class="width-250 btn btn-secondary"  name="authorities" id="authorities" th:field="*{user.authority}" style="min-width:180px">
+        <option value="ORGANIZER">Organizator</option>
+        <option value="USER">Użytkownik</option>
+    </select>
+
+    <br><br>
+    <input class="width-250 btn btn-success" type="submit" value="Rejestracja" style="min-width:180px"/>
+</form>
+
+</body>
+</html>

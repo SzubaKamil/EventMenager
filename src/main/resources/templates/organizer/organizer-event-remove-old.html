@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general.html :: headfragment">
+
+</head>
+<body>
+
+<div th:replace="fragments/general.html :: pageHead"/>
+
+<h2>PANEL ORGANIZATORA - USUWANIE ZAKOŃCZONYCH WYDARZEŃ</h2>
+<hr class="hr">
+
+<table>
+    <tr align="left">
+        <th>Nazwa</th>
+        <th>Miejsce</th>
+        <th>Rodzaj</th>
+        <th>Kategoria</th>
+        <th>Data</th>
+        <th>Opis</th>
+        <th>Sprzedaż</th>
+        <th>Cena</th>
+        <th>Link do strony</th>
+    </tr>
+
+    <th:block th:each="event : ${events}">
+        <tr align="left">
+            <th th:width="200" th:text="${event.name}"></th>
+            <th th:width="200" th:text="${event.place}"></th>
+            <th th:width="150" th:text="${event.type.name}"></th>
+            <th th:width="150" th:text="${event.category.name}"></th>
+            <th th:width="150" th:text="${event.date}"></th>
+            <th th:width="250" th:text="${event.description}"></th>
+            <th th:width="150" th:text="${event.ticket.status}"></th>
+            <th th:width="100" th:text="${event.ticket.price}"></th>
+            <th th:width="200" th:text="${event.ticket.link}"></th>
+        </tr>
+    </th:block>
+</table>
+
+<form th:action="@{/organizator/removeEvent/remove}" method="post">
+    <input class="width-250 btn btn-warning" type="submit" value="Usuń zakończone"/>
+</form>
+
+<div th:replace="fragments/general.html :: backToOrganizer" />
+
+</body>
+</html>

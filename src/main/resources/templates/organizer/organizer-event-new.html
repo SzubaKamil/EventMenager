@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general.html :: headfragment">
+
+</head>
+<body>
+
+<div th:replace="fragments/general.html :: pageHead"/>
+
+<h2>PANEL ORGANIZATORA - NOWE WYDARZENIE</h2>
+<hr class="hr">
+
+<form action="/organizator/newEvent/saveEvent" modelAttribute="event">
+
+    <input class="width-250 form-control" type="text" placeholder="Nazwa " th:field="*{event.name}">
+    <input class="width-250 form-control" type="text" placeholder="Miejsce" th:field="*{event.place}">
+
+    <a>Data:</a> <br>
+    <input class="width-250 form-control" type="date" placeholder="Data" th:field="*{event.date}" >
+
+    <a>Rodzaj wydarzenia:</a>
+    <select class="width-250 form-control" th:field="*{event.type.name} ">
+        <option th:each="type : ${types}"
+                th:value="${type.name}"
+                th:text="${type.name}">
+        </option>
+    </select>
+
+    <a>Kategoria:</a>
+    <select class="width-250 form-control" th:field="*{event.category.name}">
+        <option th:each="category : ${categories}"
+                th:value="${category.name}"
+                th:text="${category.name}">
+        </option>
+    </select>
+
+    <input class="width-250 form-control" type="text" placeholder="Opis" th:field="*{event.description}">
+    <input class="width-250 form-control" type="text" placeholder="Link do strony organizatora" th:field="*{event.ticket.link}">
+
+    <a>Status sprzedaży biletu:</a>
+    <select class="width-250 form-control" th:field="*{event.ticket.status}">
+        <option th:each="status : ${statuses}"
+                th:value="${status.name()}"
+                th:text="${status}">
+        </option>
+    </select>
+
+    <a> Cena biletu: </a>
+    <input class="width-250 form-control" type="number" placeholder="Cena" th:field="*{event.ticket.price}">
+
+    <br>
+    <input class="width-250 btn btn-success" type="submit" value="Dodaj"/>
+</form>
+
+<div th:replace="fragments/general.html :: backToOrganizer" />
+
+</body>
+</html>

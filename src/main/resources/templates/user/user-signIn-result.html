@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/general.html :: headfragment">
+
+</head>
+
+<body>
+
+<div th:replace="fragments/general.html :: pageHead"/>
+
+<div th:if="*{signed}">
+    <h2 class="text-success">ZAPISANO SIE DO WYDARZENIA POPRAWNIE</h2>
+</div>
+
+<div th:unless="*{signed}">
+    <h2 class="text-warning">JUŻ JESTEŚ ZAPISANY DO TEGO WYDARZENIA</h2>
+</div>
+
+</body>
+</html>

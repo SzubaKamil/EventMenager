@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head th:replace="fragments/general.html :: headfragment">
+
+</head>
+<body>
+
+<div th:replace="fragments/general.html :: pageHead"/>
+
+<div th:if="*{saved}">
+    <h2 class="text-success">Nowy użytkownik został dodany pomyślnie.</h2>
+</div>
+
+<div th:unless="*{saved}">
+    <h2 class="text-warning">UŻYTKOWNIK O TAKIEJ NAZWIE JUŻ ISTNIEJE W BAZIE LUB HASŁA NIE SĄ IDENTYCZNE !!!</h2>
+    <a th:href="@{/rejestracja}"> Spróbój ponownie </a>
+</div>
+
+</body>
+</html>

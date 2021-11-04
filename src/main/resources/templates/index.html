@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general.html :: headfragment">
+
+</head>
+<body>
+
+<div th:replace="fragments/general.html :: pageHead"/>
+
+<form action="/search" modelAttribute="searchEvent">
+    <br><br>
+    <input type="text" placeholder="Nazwa " th:field="*{searchEvent.name}" style="min-width:195px;">
+    <input type="text" placeholder="Miejsce " th:field="*{searchEvent.place}" style="min-width:195px;">
+
+    <select th:field="*{searchEvent.type.name}" style="min-width:150px;">
+        <option th:each="type : ${typeList}"
+                th:value="${type.name}"
+                th:text="${type.name}">
+        </option>
+    </select>
+
+    <select  th:field="*{searchEvent.category.name}" style="min-width:150px;">
+        <option th:each="category : ${categoryList}"
+                th:value="${category.name}"
+                th:text="${category.name}">
+        </option>
+    </select>
+
+    <input type="date" placeholder="Data" th:field="*{searchEvent.date}" style="min-width:145px;"  >
+    <input type="submit" value="Wyszukaj" style="min-width:150px;"/>
+</form>
+
+<br>
+
+<table>
+    <tr align="left">
+        <th>Nazwa</th>
+        <th>Miejsce</th>
+        <th>Rodzaj</th>
+        <th>Kategoria</th>
+        <th>Data</th>
+        <th>Opis</th>
+        <th>Sprzedaż</th>
+        <th>Cena</th>
+        <th>Bilet</th>
+        <th>Zapisy</th>
+    </tr>
+
+    <th:block th:each="event : ${eventList}">
+        <tr align="left">
+            <th th:width="200" th:text="${event.name}"></th>
+            <th th:width="200" th:text="${event.place}"></th>
+            <th th:width="150" th:text="${event.type.name}"></th>
+            <th th:width="155" th:text="${event.category.name}"></th>
+            <th th:width="150" th:text="${event.date}"></th>
+            <th th:width="250" th:text="${event.description}"></th>
+            <th th:width="150" th:text="${event.ticket.status}"></th>
+            <th th:width="100" th:text="${event.ticket.price}"></th>
+            <th> <a th:href="${event.ticket.link}">Kup bilet</a> </th>
+            <th align="right">
+                <form action="#" th:action="@{'/signUp/{id}'(id=${event.id})}" th:method="post" >
+                    <input type="submit" value="Zapisz się" style="min-width:100px;">
+                </form>
+            </th>
+        </tr>
+    </th:block>
+</table>
+
+<hr>
+
+<form action="/" >
+    <input class="width-250 btn btn-success" type="submit" value="Wyczyść wyszukiwanie" />
+</form>
+
+</body>
+</html>

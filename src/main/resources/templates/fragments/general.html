@@ -1,0 +1,74 @@
+<!DOCTYPE html>xm
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="headfragment">
+
+    <meta charset="UTF-8">
+    <title>Event Manager</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css"
+          integrity="sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd"
+          crossorigin="anonymous">
+
+    <style>
+        .width-250 {
+            width: 250px;
+        }
+    </style>
+
+    <style>
+        .hr {
+            background-color: bisque;
+        }
+    </style>
+
+    <style>
+        form {
+            display: inline;
+        }
+    </style>
+
+</head>
+
+<body>
+<div th:fragment="pageHead">
+
+    <h2 align="center">Wyszukiwarka wydarzeń muzycznych i kulturalnych </h2>
+    <br>
+    <hr class="hr">
+    <h1 th:inline="text">Witaj [[${#httpServletRequest.remoteUser}]]!</h1>
+
+    <a class="btn btn-info" href="/organizator/">Organizator</a>
+    <a class="btn btn-info" href="/admin/">Administrator</a>
+
+    <a sec:authorize="isAnonymous()">
+        <a th:if="${#httpServletRequest.requestURI != '/login'}" class="btn btn-info" href="/login">Zaloguj</a>
+        <a th:if="${#httpServletRequest.requestURI != '/rejestracja'}" class="btn btn-info" href="/rejestracja">Rejestracja</a>
+    </a>
+
+    <a sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}" method="post">
+            <input class="btn btn-info" type="submit" value="Wyloguj"/>
+        </form>
+    </a>
+
+    <form th:if="${#httpServletRequest.requestURI != '/'}" th:action="@{/}" method="post">
+        <input class="width-250 btn btn-success" type="submit" value="Powrót do strony głownej"/>
+    </form>
+
+    <hr class="hr">
+
+</div>
+
+<div th:fragment="backToOrganizer">
+    <hr class="hr">
+    <br>
+
+    <form th:action="@{/organizator/}" method="post">
+        <input class="width-250 btn btn-success" type="submit" value="Powrót"/>
+    </form>
+</div>
+
+</body>
+
+</html>

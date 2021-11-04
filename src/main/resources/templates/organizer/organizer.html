@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/general.html :: headfragment">
+
+</head>
+<body>
+
+<div th:replace="fragments/general.html :: pageHead"/>
+
+<h2>PANEL ORGANIZATORA</h2>
+<hr class="hr">
+
+<form th:action="@{/organizator/newEvent}" method="post">
+    <input class="width-250 btn btn-success" type="submit" value="Dodaj nowe wydarzenie"/>
+</form>
+
+<br><br>
+
+<form th:action="@{/organizator/listOfEvent}" method="post">
+    <input class="width-250 btn btn-success" type="submit" value="Lista wydarzeń"/>
+</form>
+
+<br> <br>
+
+<form th:action="@{/organizator/removeEvent}" method="post">
+    <input class="width-250 btn btn-success" type="submit" value="Usuń zakończone"/>
+</form>
+
+</body>
+</html>
